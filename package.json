@@ -1,0 +1,25 @@
+{
+    "name": "majsdown-syntax-highlighting",
+    "displayName": "Majsdown Syntax Highlighting",
+    "description": "Provide syntax highlighting for Majsdown, a scriptable flavor of Markdown.",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.63.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "majsdown",
+            "aliases": ["Majsdown", "majsdown"],
+            "extensions": [".mjsd"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "majsdown",
+            "scopeName": "source.majsdown",
+            "path": "./syntaxes/majsdown.tmLanguage.json"
+        }]
+    }
+}

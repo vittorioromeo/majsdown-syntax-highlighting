@@ -1,0 +1,71 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Majsdown",
+    "patterns": [
+        {
+            "include": "#majsdown_inject_expression"
+        },
+        {
+            "include": "#majsdown_execute_statement"
+        },
+        {
+            "include": "#majsdown_inject_codeblock"
+        },
+        {
+            "include": "text.html.markdown"
+        }
+    ],
+    "repository": {
+        "majsdown_inject_expression": {
+            "begin": "(.*?)(@@\\{)",
+            "name": "test",
+            "end": "(\\})",
+            "beginCaptures": {
+                "2": {
+                    "name": "keyword.control.majsdown"
+                }
+            },
+            "endCaptures": {
+                "1": {
+                    "name": "keyword.control.majsdown"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "source.js"
+                }
+            ]
+        },
+        "majsdown_execute_statement": {
+            "begin": "(.*?)(@@\\$)",
+            "name": "test",
+            "end": "(\\r\\n|\\r|\\n)",
+            "beginCaptures": {
+                "2": {
+                    "name": "keyword.control.majsdown"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "source.js"
+                }
+            ]
+        },
+        "majsdown_inject_codeblock": {
+            "begin": "(.*?)(@@_\\{)",
+            "name": "keyword.control.foo",
+            "end": "(\\})",
+            "beginCaptures": {
+                "2": {
+                    "name": "keyword.control.majsdown"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "source.js"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.majsdown"
+}
