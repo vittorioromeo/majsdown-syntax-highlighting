@@ -77,7 +77,7 @@
         "majsdown_code_block_decorator": {
             "begin": "(.*?)(@@_\\{)",
             "name": "majsdown_code_block_decorator",
-            "end": "(\\})",
+            "end": "(\\}_)",
             "beginCaptures": {
                 "2": {
                     "name": "keyword.control.majsdown"
