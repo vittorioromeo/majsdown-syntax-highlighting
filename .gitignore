@@ -1,2 +1,7 @@
 node_modules
 *.vsix
+.gitattributes
+.vscodeignore
+package-lock.json
+.vscode/launch.json
+.gitignore

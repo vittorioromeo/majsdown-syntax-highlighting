@@ -3,22 +3,25 @@
     "name": "Majsdown",
     "patterns": [
         {
-            "include": "#majsdown_inject_expression"
+            "include": "#majsdown_inline_expression"
         },
         {
-            "include": "#majsdown_execute_statement"
+            "include": "#majsdown_inline_statement"
         },
         {
-            "include": "#majsdown_inject_codeblock"
+            "include": "#majsdown_block_statement"
+        },
+        {
+            "include": "#majsdown_code_block_decorator"
         },
         {
             "include": "text.html.markdown"
         }
     ],
     "repository": {
-        "majsdown_inject_expression": {
+        "majsdown_inline_expression": {
             "begin": "(.*?)(@@\\{)",
-            "name": "test",
+            "name": "majsdown_inline_expression",
             "end": "(\\})",
             "beginCaptures": {
                 "2": {
@@ -36,9 +39,9 @@
                 }
             ]
         },
-        "majsdown_execute_statement": {
+        "majsdown_inline_statement": {
             "begin": "(.*?)(@@\\$)",
-            "name": "test",
+            "name": "majsdown_inline_statement",
             "end": "(\\r\\n|\\r|\\n)",
             "beginCaptures": {
                 "2": {
@@ -51,9 +54,29 @@
                 }
             ]
         },
-        "majsdown_inject_codeblock": {
+        "majsdown_block_expression": {
+            "begin": "(.*?)(@@$\\{)",
+            "name": "majsdown_block_expression",
+            "end": "(\\}$)",
+            "beginCaptures": {
+                "2": {
+                    "name": "keyword.control.majsdown"
+                }
+            },
+            "endCaptures": {
+                "1": {
+                    "name": "keyword.control.majsdown"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "source.js"
+                }
+            ]
+        },
+        "majsdown_code_block_decorator": {
             "begin": "(.*?)(@@_\\{)",
-            "name": "keyword.control.foo",
+            "name": "majsdown_code_block_decorator",
             "end": "(\\})",
             "beginCaptures": {
                 "2": {
